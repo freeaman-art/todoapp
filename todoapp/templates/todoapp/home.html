@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>To Do App</title>
+</head>
+<body class="m-10 text-grey-700 border-2 border-black-500">
+
+    {% for message in messages%}
+    <p>{{ message }}</p>
+
+    {% endfor %}
+    <h1 class="text-3xl font-bold text-center mb-10 font-sans">Enter the Task Below:</h1>
+
+    <form method="POST" action="" class="">
+    {% csrf_token %}
+    {{form.name}}
+    {{form.category}}
+    {{form.deadline}} 
+    <button type="submit">Submit</button>
+    </form>
+
+  
+
+    <br>
+    <!-- {% for post in posts %}
+
+    <p> {{post.id}} - {{post.name}} - {{post.category}} - {{post.deadline}} - {{post.completed}}</p>
+    <p> </p>
+    {% endfor %} -->
+
+
+
+    <table class="table-cell bg-black-700 text-2xl ">
+        <thead class=""> 
+            <th>Task Number</th>
+            <th>Task Name</th>
+            <th>Task Category</th>
+            <th>Enter a Deadline</th>
+            <th>Completed or Pending</th>
+            <th>Modify</th>
+            <th>Delete</th>
+        </thead>
+         {% for post in posts %}
+        <tbody class="text-center">
+            <td> {{post.id}}</td>
+            <td> {{post.name}} </td>
+            <td> {{post.category}}</td>
+            <td> {{post.deadline}}</td>
+            <td> {{post.completed}}</td>
+            <td> <button class="bg-yellow-500 "><a href="{% url 'update' post.id %}">Modify</a></button></td>
+            <td> <button class="bg-red-700 "><a href="{% url 'delete' post.id %}">Delete</a></button></td>
+         
+        </tbody>
+        {% endfor %}
+    </table>
+
+
+
+</body>
+</html>
