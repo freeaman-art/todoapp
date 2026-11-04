@@ -1,0 +1,142 @@
+/* Desktop table styling */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.responsive-table th,
+.responsive-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.responsive-table th {
+    background-color: #f2f2f2;
+}
+
+/* Mobile responsive styling */
+
+@media screen and (max-width: 600px) {
+
+    .responsive-table thead {
+        display: none;
+    }
+
+    .responsive-table,
+    .responsive-table tbody,
+    .responsive-table tr,
+    .responsive-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .responsive-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .responsive-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .responsive-table td:last-child {
+        border-bottom: none;
+    }
+
+    .responsive-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+    } 
+}
+
+
+/* Modify button */
+
+.btn-modify {
+    display: inline-block;
+    background-color: #facc15;
+    color: #422006;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.btn-modify:hover {
+    background-color: #eab308;
+    color: #422006;
+}
+
+/* Delete button */
+
+.btn-delete {
+    display: inline-block;
+    background-color: #dc2626;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #b91c1c;
+    color: white;
+}
+
+
+
+
+/* Normal deadline */
+
+.deadline-date {
+    color: #333;
+}
+
+/* Yellow warning: 7 days or less */
+
+.warning {
+    color: #d97706 !important;
+    font-weight: bold;
+}
+
+/* Red warning: 2 days or less */
+
+.urgent {
+    color: #dc2626 !important;
+    font-weight: bold;
+}
+
+/* Overdue deadline */
+
+.overdue {
+    color: #991b1b !important;
+    font-weight: bold;
+}
+
+/* Countdown timer */
+
+.countdown {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 12px;
+    color: #555;
+}

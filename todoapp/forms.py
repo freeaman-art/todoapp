@@ -6,6 +6,9 @@ class TaskForm(forms.ModelForm):
         model = Todo_List
         fields = ['category', 'name', 'deadline','completed']
         widgets = {
+                'name': forms.TextInput(attrs={
+                'placeholder': 'Enter Your Task'
+            }),
             # This generates three distinct dropdown menus for Day, Month, and Year
             'deadline': forms.SelectDateWidget(),
         }

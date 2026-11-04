@@ -1,63 +1,85 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>To Do App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/todoapp/style.css' %}">
+    <script src="{% static 'js/timer.js' %}"></script>
+ 
+    
+    <title>Document</title>
 </head>
-<body class="m-10 text-grey-700 border-2 border-black-500">
+<body>
+
+    <body class="">
 
     {% for message in messages%}
     <p>{{ message }}</p>
 
     {% endfor %}
-    <h1 class="text-3xl font-bold text-center mb-10 font-sans">Enter the Task Below:</h1>
+    <h1 class="">Enter the Task Below:</h1>
 
     <form method="POST" action="" class="">
     {% csrf_token %}
     {{form.name}}
     {{form.category}}
     {{form.deadline}} 
-    <button type="submit">Submit</button>
-    </form>
+    <button class="btn btn-danger"  type="submit">Submit</button>
+    </form> 
+<br>
 
-  
+<div class="table-container">
+    <table class="responsive-table">
 
-    <br>
-    <!-- {% for post in posts %}
-
-    <p> {{post.id}} - {{post.name}} - {{post.category}} - {{post.deadline}} - {{post.completed}}</p>
-    <p> </p>
-    {% endfor %} -->
-
-
-
-    <table class="table-cell bg-black-700 text-2xl ">
-        <thead class=""> 
-            <th>Task Number</th>
-            <th>Task Name</th>
-            <th>Task Category</th>
-            <th>Enter a Deadline</th>
-            <th>Completed or Pending</th>
-            <th>Modify</th>
-            <th>Delete</th>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Deadline</th>
+                <th>Actions</th>
+            </tr>
         </thead>
-         {% for post in posts %}
-        <tbody class="text-center">
-            <td> {{post.id}}</td>
-            <td> {{post.name}} </td>
-            <td> {{post.category}}</td>
-            <td> {{post.deadline}}</td>
-            <td> {{post.completed}}</td>
-            <td> <button class="bg-yellow-500 "><a href="{% url 'update' post.id %}">Modify</a></button></td>
-            <td> <button class="bg-red-700 "><a href="{% url 'delete' post.id %}">Delete</a></button></td>
-         
+
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td data-label="ID">{{ post.id }}</td>
+
+                <td data-label="Name">{{ post.name }}</td>
+
+                <td data-label="Category">{{ post.category }}</td>
+
+                <td data-label="Deadline"><span class="deadline-date" data-deadline="{{ post.deadline|date:'Y-m-d' }}">
+                        {{ post.deadline }} -
+                    </span>
+
+                    <span class="countdown"></span>
+
+                </td>
+
+                <td data-label="Actions">
+                    <a href="{% url 'update' post.id %}" class="btn-modify">Modify</a>
+                    |
+                    <a href="{% url 'delete' post.id %}" class="btn-delete">Delete</a>
+                </td>
+            </tr>
+           
+            {% endfor %}
         </tbody>
-        {% endfor %}
+
     </table>
+</div>
 
 
 
+<script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+
+
+
+    
 </body>
 </html>
